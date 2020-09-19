@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pokedex 0.1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+    <div class="container">
+        <h1>Welcome to my pokedex</h1>
+        <div id="list" class="card-list">
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    //https://pokeapi.co/api/v2/pokemon?limit=150
+    var list = document.getElementById("list");
+    console.log(list);
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=150', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        response.json().then(function (json) {
+
+            var i = 0;
+            json.results.forEach(element => {
+                i++;
+                list.innerHTML += "<a href='http://127.0.0.1:5500/details.html'>\
+                    <div><div class='card'><img class='card-image' \
+                    src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+ i + ".png'>\
+                    <p>"+ element.name + "</p><p>Type: Grass, Poison</p></div></a></div>";
+            });
+
+        });
+    });
+
+
+
+</script>
